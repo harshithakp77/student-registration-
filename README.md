@@ -1,18 +1,15 @@
-# Student Registration & Contact Intelligence System
+
 
 Semester 1 BCA - Python Programming (Section C Research Project)
 
-A pure Python program that reads a raw `contacts.csv` file, removes the bad
+A  Python program that reads a raw `contacts.csv` file, removes the bad
 records (wrong phone numbers, wrong emails, blank names, duplicates), keeps the
 clean student data in lists/dictionaries, lets a coordinator manage the records
 from a menu, and prints a small Business Intelligence report.
-
 No external libraries are used. Only `csv` and `os` from the standard library
 (plus `tempfile` in the test file).
 
-## Project Structure
-
-```
+ Project Structure
 student_registration/
 ├── contacts.csv          # raw input file (20 records)
 ├── students_clean.csv    # output file with valid, non-duplicate students
@@ -27,24 +24,21 @@ student_registration/
 └── README.md
 ```
 
-## How to Run
+How to Run
 
 You need Python 3 installed. No installation of packages is required.
 
-```
-git clone <your-repository-link>
 cd student_registration
 
 python loader.py          # only runs the ingestion and creates students_clean.csv
 python main.py            # starts the menu program
 python test_validator.py  # runs all the test cases
-```
 
 If `students_clean.csv` already exists, `main.py` continues from it (so your
 changes from the last run are kept). To start fresh from `contacts.csv`, delete
 `students_clean.csv` or run `python loader.py` again.
 
-## Validation Rules (validator.py)
+ Validation Rules (validator.py)
 
 `validate_contact(name, phone, email)` returns a tuple `(is_valid, reason)`.
 
@@ -57,14 +51,14 @@ changes from the last run are kept). To start fresh from `contacts.csv`, delete
 The checks run in the order name -> phone -> email and the function stops at the
 first failure, so the reason shown is the first problem found in that row.
 
-## Duplicate Handling (loader.py)
+Duplicate Handling (loader.py)
 
 Two dictionaries (`seen_phones` and `seen_emails`) store what has already been
 accepted. Looking up a key in a dictionary is fast, so each row is checked
 without looping through the whole student list. Emails are compared in
 lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 
-## Menu Options (main.py)
+ Menu Options (main.py)
 
 | Option | What it does |
 |--------|--------------|
@@ -76,7 +70,7 @@ lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 | 6 | Show the analytics report |
 | 7 | Save to `students_clean.csv` and exit |
 
-## Analytics Report (analytics.py)
+ Analytics Report (analytics.py)
 
 * Data quality: total rows, valid rows, rejected rows, accuracy % and a count of
   each error type (Invalid Phone, Bad Email, Missing Name, Duplicate Entry)
@@ -87,7 +81,7 @@ lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 The counts are made with dictionary counters like
 `counts[domain] = counts.get(domain, 0) + 1`.
 
-## Result on the Sample File
+ Result on the Sample File
 
 ```
 Total rows read     : 20
@@ -101,12 +95,10 @@ Sneha Roy (duplicate phone), blank name row, Vikram Singh (two @), Arjun Kapoor
 (no period in domain), Aditya Joshi (space in email), Siddharth Rao (nothing
 after @).
 
-## Sample Terminal Session
+ Sample Terminal Session
 
-```
-============================================================
+
 INGESTION LOG
-============================================================
 Total rows read     : 20
 Valid rows accepted : 12
 Rejected rows       : 8
@@ -114,11 +106,11 @@ Rejected rows       : 8
 Rejected rows and reasons:
   Row 4 - Ananya Sen | 5551234567 | ananya.sen@gmail.com
         Reason: Phone must start with 6, 7, 8 or 9
-  ...
+  
 
-==============================================
+
    STUDENT REGISTRATION & CONTACT SYSTEM
-==============================================
+
 1. View All Students
 2. Search Record
 3. Register Student
@@ -128,23 +120,21 @@ Rejected rows and reasons:
 7. Exit
 Enter your choice (1-7): 3
 
---- REGISTER NEW STUDENT ---
+ REGISTER NEW STUDENT 
 Enter name: Test Student
 Enter phone: 9000011111
 Enter email: test.student@gmail.com
 Student registered successfully with ID 13
-```
 
 The full session is saved in `proof/console_output.txt`.
 
-## Testing
+ Testing
 
 `test_validator.py` runs 31 checks: normal values, blank name, bad phone
 numbers (wrong length, letters, wrong starting digit), bad emails, boundary
 values (`6000000000`, `5999999999`, `a@b.c`) and duplicate phone/email rows.
 Result: 31 passed, 0 failed (see `proof/test_cases.txt`).
 
-## Notes
 
 * Phone numbers are stored as strings (`str`), not integers, so `.isdigit()` and
   length checks work and nothing gets treated like a number we can add.
