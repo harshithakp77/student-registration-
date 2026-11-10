@@ -1,9 +1,9 @@
 Student Registration & Contact Intelligence System
 
 
-This project is a Registration and Contact Intelligence Engine written completely in core Python. It was built for a regional coaching institute that collects student registration leads in an offline spreadsheet file called `contacts.csv`. The problem with this file is that the data entered into it is often not clean. Some rows have a missing name, some have phone numbers that are too short or start with a wrong digit, some have emails that are not written properly, and some students are entered two times. My program reads this raw file, checks every row, throws away the faulty and repeated records with a clear reason, keeps the good records in Python lists and dictionaries, and then lets a coaching coordinator manage those students from a simple menu in the terminal. It also prepares a small Business Intelligence report which shows how good the data was, which phone number series the students use, and which email providers they prefer.
+This project is a Registration and Contact Intelligence Engine written completely in Python. It was built for a regional coaching institute that collects student registration leads in an offline spreadsheet file called `contacts.csv`. The problem with this file is that the data entered into it is often not clean. Some rows have a missing name, some have phone numbers that are too short or start with a wrong digit, some have emails that are not written properly, and some students are entered two times. My program reads this raw file, checks every row, throws away the faulty and repeated records with a clear reason, keeps the good records in Python lists and dictionaries, and then lets a coaching coordinator manage those students from a simple menu in the terminal. It also prepares a small Business Intelligence report which shows how good the data was, which phone number series the students use, and which email providers they prefer.
 
-The whole project uses only the standard Python library (`csv`, `os`, and `tempfile` for the test file). No outside package has to be installed, so it can run on any computer that has Python 3.
+The whole project uses only the standard Python library (`csv`, `os`, and `tempfile` for the test file). 
 
  How the Project Is Organised
 
@@ -11,28 +11,27 @@ The project is divided into small files and each file has only one job. This mak
 
 ```
 student_registration/
-├── contacts.csv          raw input file with 20 student records
-├── students_clean.csv    output file with valid, non-duplicate students
-├── validator.py          the validation function
-├── loader.py             reads the csv, validates, removes duplicates, saves
-├── analytics.py          the business intelligence report
-├── main.py               the menu driven console program
-├── test_validator.py     test cases for validation and duplicates
-├── proof/
-│   ├── console_output.txt    saved run of the full program
-│   └── test_cases.txt        saved result of the test file
-└── README.md             this file
+1.contacts.csv          raw input file with 20 student records
+2. students_clean.csv    output file with valid, non-duplicate students
+3.validator.py          the validation function
+4.loader.py             reads the csv, validates, removes duplicates, saves
+5. analytics.py          the business intelligence report
+6. main.py               the menu driven console program
+7. test_validator.py     test cases for validation and duplicates
+8. proof
+   console_output.txt    saved run of the full program
+  test_cases.txt        saved result of the test file
+     README.md             this file
 ```
 
 `validator.py` contains the function `validate_contact(name, phone, email)` which checks one student at a time. `loader.py` is the ingestion script which opens `contacts.csv`, sends every row to the validator, removes duplicates and writes the clean data to `students_clean.csv`. `analytics.py` takes the loaded data and counts things using loops and dictionaries to create the report. `main.py` is the file that the user actually runs, and it joins all the other files together with a menu. The `proof` folder keeps evidence that the program was tested, and `test_validator.py` is the script that creates the test evidence.
 
  How to Run the Project
 
-First, make sure Python 3 is installed by typing `python --version` in the terminal. Then download or clone the repository and open a terminal inside the project folder. To clone it you can use the command below, and then move into the folder.
+Python 3 is installed by typing `python --version` in the terminal. Then download or clone the repository and open a terminal inside the project folder. To clone it you can use the command below, and then move into the folder.
 
 ```
-git clone <your-repository-link>
-cd student_registration
+
 ```
 
 After that there are three commands that can be used. The command `python loader.py` only runs the ingestion step, which reads `contacts.csv`, prints the ingestion log and creates `students_clean.csv`. The command `python main.py` starts the full menu program, which is the main application. The command `python test_validator.py` runs all the test cases and prints which ones passed. On some computers the word `python` may need to be replaced with `python3`.
