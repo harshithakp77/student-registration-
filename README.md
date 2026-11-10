@@ -1,6 +1,4 @@
-
-
-Semester 1 BCA - Python Programming (Section C Research Project)
+ Project -Student Registration & Contact Intelligence System.
 
 A  Python program that reads a raw `contacts.csv` file, removes the bad
 records (wrong phone numbers, wrong emails, blank names, duplicates), keeps the
@@ -24,7 +22,7 @@ student_registration/
 └── README.md
 ```
 
-How to Run
+1.How to Run-
 
 You need Python 3 installed. No installation of packages is required.
 
@@ -51,14 +49,14 @@ changes from the last run are kept). To start fresh from `contacts.csv`, delete
 The checks run in the order name -> phone -> email and the function stops at the
 first failure, so the reason shown is the first problem found in that row.
 
-Duplicate Handling (loader.py)
+2.Duplicate Handling (loader.py)
 
 Two dictionaries (`seen_phones` and `seen_emails`) store what has already been
 accepted. Looking up a key in a dictionary is fast, so each row is checked
 without looping through the whole student list. Emails are compared in
 lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 
- Menu Options (main.py)
+3. Menu Options (main.py)
 
 | Option | What it does |
 |--------|--------------|
@@ -70,7 +68,7 @@ lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 | 6 | Show the analytics report |
 | 7 | Save to `students_clean.csv` and exit |
 
- Analytics Report (analytics.py)
+4. Analytics Report (analytics.py)
 
 * Data quality: total rows, valid rows, rejected rows, accuracy % and a count of
   each error type (Invalid Phone, Bad Email, Missing Name, Duplicate Entry)
@@ -81,13 +79,10 @@ lowercase so `ONE@gmail.com` and `one@gmail.com` count as the same email.
 The counts are made with dictionary counters like
 `counts[domain] = counts.get(domain, 0) + 1`.
 
- Result on the Sample File
+ 5.Result on the Sample File
 
 ```
-Total rows read     : 20
-Valid rows accepted : 12
-Rejected rows       : 8
-Accuracy            : 60.0%
+
 ```
 
 Rejected rows: Ananya Sen (phone starts with 5), Rahul Das (phone missing),
@@ -95,7 +90,7 @@ Sneha Roy (duplicate phone), blank name row, Vikram Singh (two @), Arjun Kapoor
 (no period in domain), Aditya Joshi (space in email), Siddharth Rao (nothing
 after @).
 
- Sample Terminal Session
+ 6.Sample Terminal Session
 
 
 INGESTION LOG
@@ -109,7 +104,7 @@ Rejected rows and reasons:
   
 
 
-   STUDENT REGISTRATION & CONTACT SYSTEM
+7.STUDENT REGISTRATION & CONTACT SYSTEM
 
 1. View All Students
 2. Search Record
@@ -120,7 +115,7 @@ Rejected rows and reasons:
 7. Exit
 Enter your choice (1-7): 3
 
- REGISTER NEW STUDENT 
+ 8.REGISTER NEW STUDENT 
 Enter name: Test Student
 Enter phone: 9000011111
 Enter email: test.student@gmail.com
@@ -128,7 +123,7 @@ Student registered successfully with ID 13
 
 The full session is saved in `proof/console_output.txt`.
 
- Testing
+9.Testing
 
 `test_validator.py` runs 31 checks: normal values, blank name, bad phone
 numbers (wrong length, letters, wrong starting digit), bad emails, boundary
