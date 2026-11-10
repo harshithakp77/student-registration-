@@ -1,0 +1,94 @@
+==============================================================================
+VALIDATION TEST CASES
+==============================================================================
+[PASS] Normal valid record
+       input    : 'Aarav Sharma' '9876543210' 'aarav.sharma@gmail.com'
+       expected : True | got: True - Valid
+[PASS] Valid email with subdomain
+       input    : 'Rohan Verma' '7001122334' 'rohan.v@yahoo.co.in'
+       expected : True | got: True - Valid
+[PASS] Blank name
+       input    : '' '9123456780' 'noname@gmail.com'
+       expected : False | got: False - Name is blank
+[PASS] Name with only spaces
+       input    : '    ' '9123456780' 'noname@gmail.com'
+       expected : False | got: False - Name is blank
+[PASS] Single character name
+       input    : 'A' '9123456780' 'a@gmail.com'
+       expected : True | got: True - Valid
+[PASS] Phone starts with 5
+       input    : 'Ananya Sen' '5551234567' 'ananya.sen@gmail.com'
+       expected : False | got: False - Phone must start with 6, 7, 8 or 9
+[PASS] Phone is empty
+       input    : 'Rahul Das' '' 'rahul.das@college.edu'
+       expected : False | got: False - Phone number is missing
+[PASS] Phone has 9 digits
+       input    : 'Test' '987654321' 't@gmail.com'
+       expected : False | got: False - Phone must be exactly 10 digits
+[PASS] Phone has 11 digits
+       input    : 'Test' '98765432101' 't@gmail.com'
+       expected : False | got: False - Phone must be exactly 10 digits
+[PASS] Phone has letters
+       input    : 'Test' '98765abcde' 't@gmail.com'
+       expected : False | got: False - Phone must contain digits only
+[PASS] Phone has 10 chars with a dash
+       input    : 'Test' '98765-4321' 't@gmail.com'
+       expected : False | got: False - Phone must contain digits only
+[PASS] Boundary: phone starts with 6
+       input    : 'Test' '6000000000' 't@gmail.com'
+       expected : True | got: True - Valid
+[PASS] Boundary: phone starts with 9
+       input    : 'Test' '9999999999' 't@gmail.com'
+       expected : True | got: True - Valid
+[PASS] Boundary: phone 5999999999
+       input    : 'Test' '5999999999' 't@gmail.com'
+       expected : False | got: False - Phone must start with 6, 7, 8 or 9
+[PASS] Boundary: phone 0123456789
+       input    : 'Test' '0123456789' 't@gmail.com'
+       expected : False | got: False - Phone must start with 6, 7, 8 or 9
+[PASS] Phone with spaces around it
+       input    : 'Test' ' 9876543210 ' 't@gmail.com'
+       expected : True | got: True - Valid
+[PASS] Email with two @
+       input    : 'Vikram Singh' '9898989898' 'vikram.singh@@gmail.com'
+       expected : False | got: False - Email has multiple @ symbols
+[PASS] Email with no dot in domain
+       input    : 'Arjun Kapoor' '9876501234' 'arjun@kapoor'
+       expected : False | got: False - Email domain must have a period in the middle (like gmail.com)
+[PASS] Email with a space
+       input    : 'Aditya Joshi' '7890123456' 'aditya joshi@gmail.com'
+       expected : False | got: False - Email must not contain spaces
+[PASS] Email ends with @
+       input    : 'Siddharth Rao' '9112233445' 'siddharth.rao@'
+       expected : False | got: False - Email domain must have a period in the middle (like gmail.com)
+[PASS] Email with no @
+       input    : 'Test' '9876543210' 'testgmail.com'
+       expected : False | got: False - Email has no @ symbol
+[PASS] Email nothing before @
+       input    : 'Test' '9876543210' '@gmail.com'
+       expected : False | got: False - Email has no characters before @
+[PASS] Email empty
+       input    : 'Test' '9876543210' ''
+       expected : False | got: False - Email is missing
+[PASS] Email domain starts with dot
+       input    : 'Test' '9876543210' 'a@.com'
+       expected : False | got: False - Email domain must have a period in the middle (like gmail.com)
+[PASS] Email domain ends with dot
+       input    : 'Test' '9876543210' 'a@gmail.'
+       expected : False | got: False - Email domain must have a period in the middle (like gmail.com)
+[PASS] Boundary: shortest valid email
+       input    : 'Test' '9876543210' 'a@b.c'
+       expected : True | got: True - Valid
+
+==============================================================================
+DUPLICATE HANDLING TEST
+==============================================================================
+[PASS] 4 rows were read
+[PASS] 2 students accepted
+[PASS] 2 rows rejected as duplicates
+[PASS] Duplicate phone caught
+[PASS] Duplicate email caught (case ignored)
+
+==============================================================================
+Total passed: 31 | Total failed: 0
+==============================================================================
